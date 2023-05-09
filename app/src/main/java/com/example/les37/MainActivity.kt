@@ -4,6 +4,7 @@ import android.app.Activity
 import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ViewGroup
 import android.widget.Toast
 import com.example.les37.databinding.ActivityMainBinding
 
@@ -28,14 +29,16 @@ class MainActivity : AppCompatActivity() {
 
         adapter = PhoneAdapter(arrayList) {
             val fragment = FirstFragment()
-
             val bundle= Bundle()
             bundle.putString("name", it.name.toString())
             bundle.putString("price", it.price.toString())
             fragment.arguments = bundle
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, FirstFragment())
+                .replace(R.id.container, fragment).addToBackStack(null)
                 .commit()
+            val parent = binding.recyclerView.parent as ViewGroup
+            parent.removeView(binding.recyclerView)
+
         }
         binding.recyclerView.adapter = adapter
 

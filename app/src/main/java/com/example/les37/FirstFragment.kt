@@ -22,9 +22,7 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().supportFragmentManager.beginTransaction()
-            .add(R.id.container, FirstFragment())
-            .commit()
+
 
         val name = arguments?.getString("name")
         val price=arguments?.getString("price")
